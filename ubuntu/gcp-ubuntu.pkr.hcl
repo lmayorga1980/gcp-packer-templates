@@ -12,6 +12,11 @@ variable "project_id" {
   description = "GCP Project ID"
 }
 
+variable "account_file_path" {
+  type = string
+  description = "GCP Account File Path"
+}
+
 source "googlecompute" "ubuntu-custom" {
   project_id = var.project_id
   source_image_project_id = ["ubuntu-os-pro-cloud"]
@@ -27,7 +32,7 @@ source "googlecompute" "ubuntu-custom" {
   image_labels = {
     built_by = "packer"
   }
-  account_file = "experiments-88-be9b4b7fc676.json"
+  account_file = var.account_file_path
 }
 
 build {
