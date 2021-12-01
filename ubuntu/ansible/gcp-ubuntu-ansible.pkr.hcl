@@ -7,17 +7,7 @@ packer {
   }
 }
 
-variable "project_id" {
-  type        = string
-  description = "GCP Project ID"
-}
-
-variable "account_file_path" {
-  type = string
-  description = "GCP Account File Path"
-}
-
-source "googlecompute" "ubuntu-custom" {
+source "googlecompute" "ubuntu-ansible" {
   project_id = var.project_id
   source_image_project_id = ["ubuntu-os-pro-cloud"]
   source_image_family = "ubuntu-pro-1804-lts"
@@ -38,24 +28,12 @@ source "googlecompute" "ubuntu-custom" {
 build {
   name = "ubuntu-custom-2"
   sources = [
-    "sources.googlecompute.ubuntu-custom"
+    "sources.googlecompute.ubuntu-ansible"
   ]
 
-  provisioner "shell" {
-    environment_vars = [
-      "FOO=hello world",
-    ]
+  provisioner "ansible" {
+    playbook_file = "./playbooks/playbook.yml"
+    extra_arguments = ["--extra-vars","packages=${var.packages}"]
 
-    inline = [
-      "echo Installing Redis",
-      "sleep 30",
-      "sudo apt-get update",
-      "sudo apt-get install -y redis-server",
-      "echo \"FOO is $FOO\" > example.txt",
-    ]
   }
-
-  provisioner "shell" {
-    inline = ["echo This provisioner runs last"]
-  }
-}
+ }

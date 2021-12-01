@@ -7,7 +7,7 @@ packer {
   }
 }
 
-source "googlecompute" "windows-example" {
+source "googlecompute" "windows-ssh-example" {
   project_id = var.project_id
   source_image_project_id = ["windows-cloud"]
   source_image_family = "windows-2019"
@@ -33,7 +33,7 @@ source "googlecompute" "windows-example" {
 }
 
 build {
-  sources = ["sources.googlecompute.windows-example"]
+  sources = ["sources.googlecompute.windows-ssh-example"]
 
   provisioner "powershell" {
     script = "../scripts/install-features.ps1"

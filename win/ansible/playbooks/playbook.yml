@@ -1,0 +1,21 @@
+---
+- name: Default Playbook
+  hosts: default
+
+  tasks:
+    - name: "Install latest Chocolatey"
+      raw: "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
+      iex ((New-Object System.Net.WebClient).DownloadString('{{ chocolatey_installer }}'))"
+      vars:
+        chocolatey_installer: "https://chocolatey.org/install.ps1"
+    - name: "Add chocolatey to PATH."
+      win_path:
+        name: PATH
+        elements: '%ALLUSERSPROFILE%\chocolatey\bin'
+        scope: machine
+        state: present
+    - name: Install Packages
+      win_chocolatey:
+        name: '{{item}}'
+        state: present
+      loop: "{{ win_packages.split(',') }}"

@@ -8,13 +8,16 @@ variable "account_file_path" {
   description = "GCP Account File Path"
 }
 
-variable "packer_username" {
+variable "package" {
   type = string
-  default = "packer_user"
+  description = "List of Packages"
+  default = "vim"
 }
 
-variable "packer_user_password" {
+variable "packages" {
   type = string
-  sensitive = true
-  default = "=|i3FdD3,{C<:^n"
+  description = "List of Packages"
+  default = "vim,net-tools"
 }
+
+
