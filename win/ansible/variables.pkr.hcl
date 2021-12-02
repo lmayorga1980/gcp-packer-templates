@@ -16,7 +16,7 @@ variable "packer_username" {
 variable "packer_user_password" {
   type      = string
   sensitive = true
-  default   = "=|i3FdD3,{C<:^n"
+  default   = ""
 }
 
 variable "win_packages" {
@@ -26,10 +26,12 @@ variable "win_packages" {
 
 variable "ssh_pub_key" {
   type    = string
-  default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOpVcqCItUvRwSe6l/Zv8tuSlIP7fQDh4C8kdvclXTEg lmayorga@lcentinel88.local"
 }
 
 variable "ssh_key_file_path" {
   type    = string
-  default = "/Users/lmayorga/.ssh/packer_gcp_key"
+}
+
+variable "ssh_pub_key_path" {
+  type = string
 }

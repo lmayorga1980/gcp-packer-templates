@@ -19,3 +19,16 @@
         name: '{{item}}'
         state: present
       loop: "{{ win_packages.split(',') }}"
+    - name: Get whoami information
+      win_whoami:
+      register: whoami
+    - name: Print return information from the previous task
+      ansible.builtin.debug:
+        var: whoami
+        verbosity: 2
+    - name: Install all security updates with automatic reboots
+      win_updates:
+        category_names:
+        - SecurityUpdates
+        reboot: yes
+

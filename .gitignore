@@ -1,3 +1,4 @@
 creds-*
 *.bk
 *.pem
+values.hcl

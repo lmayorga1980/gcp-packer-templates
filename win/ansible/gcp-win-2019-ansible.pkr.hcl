@@ -39,12 +39,10 @@ build {
     playbook_file           = "./playbooks/playbook.yml"
     use_proxy               = false
     ansible_ssh_extra_args  = ["-o StrictHostKeyChecking=no -o IdentitiesOnly=yes"]
-    ssh_authorized_key_file = "/Users/lmayorga/.ssh/packer_gcp_key.pub"
+    ssh_authorized_key_file = var.ssh_pub_key_path
     extra_arguments = ["-e", "win_packages=${var.win_packages}",
       "-e",
       "ansible_shell_type=powershell",
-      "-e",
-      "ansible_shell_executable=None",
       "-e",
       "ansible_shell_executable=None"
     ]
