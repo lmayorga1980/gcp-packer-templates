@@ -1,10 +1,11 @@
+---
 name: GCP Packer Templates
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
-    
+    branches: [master]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,9 +13,5 @@ jobs:
       - name: Setup Packer
         uses: hashicorp-contrib/setup-packer@v2.0.0
         with:
-          # The API token for the action to get the latest release of Packer from GitHub API
-          # The version to use
           packer-version: latest
       - run: cd ubuntu/basic && packer validate .
-        
-        
