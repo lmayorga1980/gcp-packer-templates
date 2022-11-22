@@ -7,7 +7,6 @@ packer {
   }
 }
 
-
 source "googlecompute" "ubuntu-custom" {
   project_id = var.project_id
   source_image_project_id = ["ubuntu-os-pro-cloud"]
