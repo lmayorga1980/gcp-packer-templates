@@ -36,7 +36,7 @@ build {
   sources = ["sources.googlecompute.windows-ssh-example"]
 
   provisioner "powershell" {
-    script = "../scripts/install-features.ps1"
+    script = "../../scripts/install-features.ps1"
     elevated_user     = var.packer_username
     elevated_password = var.packer_user_password
   }
