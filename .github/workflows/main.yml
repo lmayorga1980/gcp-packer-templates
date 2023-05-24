@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: example
     steps:
       - name: Setup Packer
         uses: hashicorp-contrib/setup-packer@v2.0.0
