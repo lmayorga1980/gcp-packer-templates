@@ -1,0 +1,17 @@
+---
+name: GCP Packer Templates
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Packer
+        uses: hashicorp-contrib/setup-packer@v2.0.0
+        with:
+          packer-version: latest
+      - run: cd ubuntu/basic && packer validate .
